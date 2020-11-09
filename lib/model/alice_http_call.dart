@@ -10,6 +10,7 @@ class AliceHttpCall {
   String method = "";
   String endpoint = "";
   String server = "";
+  String uri = "";
   int duration = 0;
 
   AliceHttpRequest request;
@@ -45,12 +46,5 @@ class AliceHttpCall {
     curlCmd += ((compressed) ? " --compressed " : " ") +
         "\'${secure ? 'https://' : 'http://'}$server$endpoint\'";
     return curlCmd;
-  }
-
-  String getCallLog() {
-    return '${request.time.toString()}\n' +
-        '$endpoint\n$method' +
-        '\n${request.body}\n${response.status}' +
-        '\n${response.body}\n';
   }
 }

@@ -1,3 +1,75 @@
+## 0.1.5
+* Changed video_player and Chewie to Better Player. Better Player will be used to display videos.
+
+## 0.1.4
+* Updated texts in call details to be selectable
+* Fixed general bugs
+* Fixed video not disposed properly
+
+## 0.1.3
+* Updated documentation
+
+## 0.1.2
+* Updated dependencies
+* Added documentation
+* General refactor
+
+## 0.1.1
+* Removed sound in ios notification
+* Upgraded local notification library
+
+## 0.1.0
+* Promoted to 0.1.0
+* Added Android/iOS dummy classes for pubdev score fix
+
+## 0.0.33
+* Fixed share issue
+
+## 0.0.32
+* Code style refactor
+
+## 0.0.31
+* Fixed file save path of iOS
+* Fixed Stream request body
+
+## 0.0.30
+* Added better duration and bytes formatting
+
+## 0.0.29
+* Added possibility to add generic http call
+* Refactored rendering of invalid body in application/json response
+
+## 0.0.28
+* Fixed rendering body responses of unknown content-type
+
+## 0.0.27
+* UI polishing
+* File & email content polishing
+
+## 0.0.26
+* Added search support in calls screen
+* Disabled notifications sound (by https://github.com/itsJoKr Josip Krnjic)
+
+## 0.0.25
+* Added notificationIcon parameter
+* Added better notification handling
+* Refactored codebase
+* Added setNavigatorKey method
+* Added FormData support for Dio requests
+
+## 0.0.24
+* Updated dependencies
+* Prepare for 1.0.0 version of sensors and package_info. ([dart_lsc](https://github.com/amirh/dart_lsc))
+
+## 0.0.23
+* Updated to dart 2.6.0
+* Added AliceHttpExtensions, AliceHttpClientExtensions
+
+## 0.0.22
+* Updated dependencies
+* Refactored response page. If response is image or video, Alice will show it in response page. Large
+body outputs will be not shown by default. There is a "Show body" button to show large output.
+
 ## 0.0.21
 * Added Chopper support
 * Added AndroidX support

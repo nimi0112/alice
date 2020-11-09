@@ -7,11 +7,15 @@ import 'package:alice/model/alice_http_response.dart';
 import 'package:http/http.dart' as http;
 
 class AliceHttpAdapter {
-  final AliceCore core;
+  /// AliceCore instance
+  final AliceCore aliceCore;
 
-  AliceHttpAdapter(this.core);
+  /// Creates alice http adapter
+  AliceHttpAdapter(this.aliceCore)
+      : assert(aliceCore != null, "aliceCore can't be null");
 
-  onResponse(http.Response response, {dynamic body}) {
+  /// Handles http response. It creates both request and response from http call
+  void onResponse(http.Response response, {dynamic body}) {
     if (response == null) {
       return;
     }
@@ -23,6 +27,7 @@ class AliceHttpAdapter {
     AliceHttpCall call = AliceHttpCall(response.request.hashCode);
     call.loading = true;
     call.client = "HttpClient (http package)";
+    call.uri = request.url.toString();
     call.method = request.method;
     var path = request.url.path;
     if (path == null || path.length == 0) {
@@ -64,6 +69,7 @@ class AliceHttpAdapter {
     AliceHttpResponse httpResponse = AliceHttpResponse();
     httpResponse.status = response.statusCode;
     httpResponse.body = response.body;
+
     httpResponse.size = utf8.encode(response.body.toString()).length;
     httpResponse.time = DateTime.now();
     Map<String, String> responseHeaders = Map();
@@ -77,6 +83,6 @@ class AliceHttpAdapter {
 
     call.loading = false;
     call.duration = 0;
-    core.addCall(call);
+    aliceCore.addCall(call);
   }
 }

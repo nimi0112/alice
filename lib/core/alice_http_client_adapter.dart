@@ -7,10 +7,14 @@ import 'package:alice/model/alice_http_request.dart';
 import 'package:alice/model/alice_http_response.dart';
 
 class AliceHttpClientAdapter {
-  final AliceCore core;
+  /// AliceCore instance
+  final AliceCore aliceCore;
 
-  AliceHttpClientAdapter(this.core);
+  /// Creates alice http client adapter
+  AliceHttpClientAdapter(this.aliceCore)
+      : assert(aliceCore != null, "aliceCore can't be null");
 
+  /// Handles httpClientRequest and creates http alice call from it
   void onRequest(HttpClientRequest request, {dynamic body}) {
     if (request == null) {
       return;
@@ -19,6 +23,7 @@ class AliceHttpClientAdapter {
     call.loading = true;
     call.client = "HttpClient (io package)";
     call.method = request.method;
+    call.uri = request.uri.toString();
 
     var path = request.uri.path;
     if (path == null || path.length == 0) {
@@ -55,9 +60,10 @@ class AliceHttpClientAdapter {
 
     call.request = httpRequest;
     call.response = AliceHttpResponse();
-    core.addCall(call);
+    aliceCore.addCall(call);
   }
 
+  /// Handles httpClientRequest and adds response to http alice call
   void onResponse(HttpClientResponse response, HttpClientRequest request,
       {dynamic body}) async {
     if (response == null) {
@@ -82,6 +88,6 @@ class AliceHttpClientAdapter {
       headers[header] = values.toString();
     });
     httpResponse.headers = headers;
-    core.addResponse(httpResponse, request.hashCode);
+    aliceCore.addResponse(httpResponse, request.hashCode);
   }
 }
